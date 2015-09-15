@@ -8,7 +8,7 @@ Contact = (function (self) {
 
     self.Contact = function (_gender, _firstName, _lastName) {
 
-        var gender, firstName, lastName, contactId = "";
+        var gender, firstName, lastName, contactId = "", mails = [], phones = [];
 
         this.lastName = function () {
             return lastName;
@@ -19,13 +19,25 @@ Contact = (function (self) {
         this.gender = function () {
             return gender;
         };
+        this.mails = function () {
+            return mails;
+        };
+        this.phones = function () {
+            return phones;
+        };
+        this.setMail = function (address, category) {
+            mails.push(new Contact.Mail(address, category));
+        };
+        this.setPhone = function (number, category, type) {
+            phones.push(new Contact.Phone(number, category, type));
+        };
 
         var process = function () {
         };
 
         function generateId() {
             "xxxx-xxxx-xxxx-xxxx-xxxx".replace(/x/g, function (c) {
-                var r = Math.random() * 16 | 0, v = c == "x" ? r : (r&0x3 | 0x8);
+                var r = Math.random() * 16 | 0, v = c == "x" ? r : (r & 0x3 | 0x8);
                 return v.toString(16);
             });
         }
