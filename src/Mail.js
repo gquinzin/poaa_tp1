@@ -16,9 +16,6 @@ Contact = (function (self) {
             return category;
         };
 
-        var process = function () {
-        };
-
         var init = function (_address, _category) {
             address = _address;
             category = _category;

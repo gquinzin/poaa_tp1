@@ -8,7 +8,7 @@ Contact = (function (self) {
 
     self.Contact = function (_gender, _firstName, _lastName) {
 
-        var gender, firstName, lastName, contactId = "", mails = [], phones = [];
+        var gender, firstName, lastName, id = "", mails = [], phones = [];
 
         this.lastName = function () {
             return lastName;
@@ -25,32 +25,27 @@ Contact = (function (self) {
         this.phones = function () {
             return phones;
         };
-        this.setMail = function (address, category) {
-            mails.push(new Contact.Mail(address, category));
+        this.addMail = function (mail) {
+            mails.push(mail);
         };
-        this.setPhone = function (number, category, type) {
-            phones.push(new Contact.Phone(number, category, type));
+        this.addPhone = function (phone) {
+            phones.push(phone);
         };
-
-        var process = function () {
+        this.id = function () {
+            return id;
         };
-
-        function generateId() {
-            "xxxx-xxxx-xxxx-xxxx-xxxx".replace(/x/g, function (c) {
-                var r = Math.random() * 16 | 0, v = c == "x" ? r : (r & 0x3 | 0x8);
-                return v.toString(16);
-            });
-        }
 
         var init = function (_gender, _firstName, _lastName) {
             gender = _gender;
             firstName = _firstName;
             lastName = _lastName;
-            contactId = new generateId();
-
+            id = "xxxx-xxxx-xxxx-xxxx-xxxx".replace(/x/g, function (c) {
+                var r = Math.random() * 16 | 0, v = c == "x" ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
         };
 
-        init(_gender, _firstName, _lastName, contactId);
+        init(_gender, _firstName, _lastName);
     };
 
     self.Gender = {

@@ -12,15 +12,15 @@ Contact = (function (self) {
             return new Contact.Contact(gender, firstName, lastName);
         };
 
-        this.createContactWithProfessionalMail = function (gender, firstName, lastName, mailAddress){
-            var contact =  new Contact.Contact(gender, firstName, lastName);
-            contact.setMail(mailAddress, Contact.MailCategory.PRO);
+        this.createContactWithProfessionalMail = function(genre, firstName, lastName, mail) {
+            var contact = this.createMinimalContact(genre, firstName, lastName);
+            contact.addMail(new Contact.Mail(mail, Contact.MailCategory.PRO));
             return contact;
         };
 
-        this.createContactWithProfessionalMobile = function(gender, firstName, lastName, phoneNumber){
-            var contact =  new Contact.Contact(gender, firstName, lastName);
-            contact.setPhone(phoneNumber, Contact.PhoneCategory.PRO, Contact.PhoneType.MOBILE);
+        this.createContactWithProfessionalMobile = function(genre, firstName, lastName, number) {
+            var contact = this.createMinimalContact(genre, firstName, lastName);
+            contact.addPhone(new Contact.Phone(number, Contact.PhoneCategory.PRO, Contact.PhoneType.MOBILE));
             return contact;
         };
 
