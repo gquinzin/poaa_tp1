@@ -13,7 +13,7 @@ Contact = (function (self) {
             return Contact.Contacts;
         },
         clear: function () {
-            Contact.Contacts.lenght = 0;
+            Contact.Contacts.listSize = 0;
             Contact.Contacts.list = {};
         },
         size: function () {
@@ -23,25 +23,35 @@ Contact = (function (self) {
             Contact.Contacts.list[contact.id()] = contact;
             Contact.Contacts.listSize++;
         },
-        get: function(contactId) {
+        get: function (contactId) {
             return Contact.Contacts.list[contactId];
         },
-        getFromName: function(firstName, lastName) {
+        getFromName: function (firstName, lastName) {
             var contacts = [];
 
             for (var c in Contact.Contacts.list) {
-                if (c.firstName === firstName && c.lastName === lastName) {
-                    contacts.push(c);
+                var contact = Contact.Contacts.list[c];
+
+                if (contact.firstName() === firstName && contact.lastName() === lastName) {
+                    contacts.push(contact);
                 }
             }
 
-            return contacts;
+            if (contacts.length === 0) {
+                return null;
+            } else {
+                return contacts;
+            }
         },
-        remove: function(contactId) {
+        remove: function (contactId) {
             delete Contact.Contacts.list[contactId];
             Contact.Contacts.listSize--;
+        },
+        search: function (strategy) {
+            return strategy.search();
         }
     };
+
     return self;
 
 }(Contact || {}));
