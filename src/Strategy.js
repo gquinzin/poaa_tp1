@@ -8,11 +8,12 @@ Contact = ( function (self) {
 
     self.FromNameSearchStrategy = function (_firstName, _lastName) {
         var firstName, lastName;
-        this.search = function () {
+
+        this.search = function (_list) {
             var contacts = [];
 
-            for (var c in Contact.Contacts.list) {
-                var contact = Contact.Contacts.list[c];
+            for (var c in _list) {
+                var contact = _list[c];
 
                 if (contact.firstName() === firstName && contact.lastName() === lastName) {
                     contacts.push(contact);
@@ -23,9 +24,11 @@ Contact = ( function (self) {
                 return null;
             } else if (contacts.length === 1) {
                 return contacts[0];
+            } else {
+                return contacts;
             }
-            return contacts;
         };
+
         var init = function (_firstName, _lastName) {
             firstName = _firstName;
             lastName = _lastName;
@@ -36,10 +39,12 @@ Contact = ( function (self) {
 
     self.FromMailSearchStrategy = function (_mail) {
         var mail;
-        this.search = function () {
+
+        this.search = function (_list) {
             var contacts = [];
-            for (var c in Contact.Contacts.list) {
-                var contact = Contact.Contacts.list[c];
+
+            for (var c in _list) {
+                var contact = _list[c];
                 var mails = contact.mails();
                 for (var i = 0; i < mails.length; i++) {
                     if (mails[i].address() === mail) {
@@ -52,11 +57,13 @@ Contact = ( function (self) {
                 return null;
             } else if (contacts.length === 1) {
                 return contacts[0];
+            } else {
+                return contacts;
             }
-            return contacts;
         };
-        var init = function (_email) {
-            mail = _email;
+
+        var init = function (_mail) {
+            mail = _mail;
         };
 
         init(_mail);
@@ -64,10 +71,12 @@ Contact = ( function (self) {
 
     self.FromPhoneSearchStrategy = function (_phone) {
         var phone;
-        this.search = function () {
+
+        this.search = function (_list) {
             var contacts = [];
-            for (var c in Contact.Contacts.list) {
-                var contact = Contact.Contacts.list[c];
+
+            for (var c in _list) {
+                var contact = _list[c];
                 var phones = contact.phones();
                 for (var i = 0; i < phones.length; i++) {
                     if (phones[i].number() === phone) {
@@ -80,9 +89,11 @@ Contact = ( function (self) {
                 return null;
             } else if (contacts.length === 1) {
                 return contacts[0];
+            } else {
+                return contacts;
             }
-            return contacts;
         };
+
         var init = function (_phone) {
             phone = _phone;
         };

@@ -48,8 +48,22 @@ Contact = (function (self) {
             Contact.Contacts.listSize--;
         },
         search: function (strategy) {
-            return strategy.search();
+            return strategy.search(this.list);
         }
+    };
+
+    self.Contacts2 = function () {
+        var listSize = 0;
+        var list = {};
+
+        this.add = function(contact){
+            list[contact.id()] = contact;
+            listSize++;
+        };
+        this.search = function (strategy) {
+            return strategy.search(list);
+        };
+
     };
 
     return self;
