@@ -19,6 +19,10 @@ Contact = (function (self) {
             return type;
         };
 
+        this.setNumber = function (_newNum){
+            number = _newNum;
+        };
+
         var init = function (_number, _category, _type) {
             number = _number;
             category = _category;

@@ -63,6 +63,9 @@ Contact = (function (self) {
         this.search = function (strategy) {
             return strategy.search(list);
         };
+        this.change = function (strategy) {
+            return strategy.changeNumber(list);
+        };
 
     };
 

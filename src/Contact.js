@@ -8,7 +8,7 @@ Contact = (function (self) {
 
     self.Contact = function (_gender, _firstName, _lastName) {
 
-        var gender, firstName, lastName, id = "", mails = [], phones = [];
+        var gender, firstName, lastName, id = "", mails = [], phones = [], observer = null;
 
         this.lastName = function () {
             return lastName;
@@ -30,6 +30,19 @@ Contact = (function (self) {
         };
         this.addPhone = function (phone) {
             phones.push(phone);
+        };
+        this.changePhone = function (_oldPhone, _newPhone){
+            var phones = this.phones();
+            for (var i = 0; i < phones.length; i++) {
+                if (phones[i].number() === _oldPhone) {
+                    phones[i].setNumber(_newPhone);
+                    observer.notify(id);
+                    observer = null;
+                }
+            }
+        };
+        this.register = function (_observer) {
+            observer = _observer;
         };
         this.id = function () {
             return id;

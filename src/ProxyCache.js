@@ -11,14 +11,15 @@ Contact = ( function (self) {
         var cacheList = {};
 
         this.search = function (strategy) {
+
             if(cacheList[strategy]){
                 return cacheList[strategy];
             }
-
             for (var i=0; i < contactsList.length; i++) {
                 var result = contactsList[i].search(strategy);
                 if(result !== null){
                     cacheList[strategy] = result;
+                    result.register(this);
                     return result;
                 }
             }
@@ -28,6 +29,15 @@ Contact = ( function (self) {
             return cacheList.hasOwnProperty(strategy);
         };
 
+        this.notify = function (_contactId) {
+            for (var c in cacheList) {
+                var contact = cacheList[c];
+                if (contact.id() === _contactId) {
+                    delete cacheList[c];
+                }
+            }
+        };
+
         var init = function (_contactsList) {
             contactsList = _contactsList;
         };
@@ -35,6 +45,6 @@ Contact = ( function (self) {
         init(_contactsList);
     };
 
-
     return self;
+
 }(Contact || {}) );

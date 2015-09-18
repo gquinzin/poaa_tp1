@@ -101,6 +101,29 @@ Contact = ( function (self) {
         init(_phone);
     };
 
+    self.ChangePhoneStrategy = function (_firstName, _lastName, _oldNumber, _newNumber) {
+        var firstName, lastName, oldNumber, newNumber;
+
+        this.changeNumber = function (_list) {
+            for (var c in _list) {
+                var contact = _list[c];
+
+                if (contact.firstName() === firstName && contact.lastName() === lastName) {
+                    contact.changePhone(oldNumber, newNumber);
+                }
+            }
+        };
+
+        var init = function (_firstName, _lastName, _oldNumber, _newNumber) {
+            firstName = _firstName;
+            lastName = _lastName;
+            oldNumber = _oldNumber;
+            newNumber = _newNumber;
+        };
+
+        init(_firstName, _lastName, _oldNumber, _newNumber);
+    };
+
     return self;
 
 }(Contact || {}) );
