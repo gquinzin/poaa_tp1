@@ -24,6 +24,12 @@ Contact = (function (self) {
             return contact;
         };
 
+        this.createContactWithTag = function(genre, firstName, lastName, tag) {
+            var contact = this.createMinimalContact(genre, firstName, lastName);
+            contact.setTag(tag);
+            return contact;
+        };
+
     };
 
     return self;

@@ -8,7 +8,8 @@ Contact = (function (self) {
 
     self.Contact = function (_gender, _firstName, _lastName) {
 
-        var gender, firstName, lastName, id = "", mails = [], phones = [], observer = null;
+        var gender, firstName, lastName, id = "", tag = "";
+        var mails = [], phones = [], observer = null;
 
         this.lastName = function () {
             return lastName;
@@ -46,6 +47,12 @@ Contact = (function (self) {
         };
         this.id = function () {
             return id;
+        };
+        this.setTag = function (_tag) {
+            tag = _tag;
+        };
+        this.tag = function () {
+            return tag;
         };
 
         var init = function (_gender, _firstName, _lastName) {

@@ -56,6 +56,9 @@ Contact = (function (self) {
         var listSize = 0;
         var list = {};
 
+        this.size = function () {
+            return listSize;
+        };
         this.add = function(contact){
             list[contact.id()] = contact;
             listSize++;
@@ -65,6 +68,17 @@ Contact = (function (self) {
         };
         this.change = function (strategy) {
             return strategy.changeNumber(list);
+        };
+        this.findContactByTag = function (tag) {
+            for (var c in list) {
+                var contact = list[c];
+
+                if (contact.tag() === tag) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         };
 
     };
