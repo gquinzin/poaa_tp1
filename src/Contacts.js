@@ -49,6 +49,9 @@ Contact = (function (self) {
         },
         search: function (strategy) {
             return strategy.search(this.list);
+        },
+        iterator: function(){
+            return new Contact.Iterator(this);
         }
     };
 

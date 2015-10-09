@@ -55,6 +55,14 @@ Contact = (function (self) {
             return tag;
         };
 
+        this.toObject = function() {
+            return {
+                gender: gender,
+                firstName: firstName,
+                lastName: lastName
+            };
+        };
+
         var init = function (_gender, _firstName, _lastName) {
             gender = _gender;
             firstName = _firstName;
