@@ -17,6 +17,23 @@ Contact = function (self) {
                 localStorage.setItem("contacts/" + contact.id, JSON.stringify(contact.toObject()));
                 iterator.next();
             }
+        },
+        load: function(_contacts){
+            for(var i=0; i < localStorage.length; i++) {
+                var obj = JSON.parse(localStorage.getItem(localStorage.key(i)));
+                var contact = new Contact.Contact(obj.gender, obj.firstName, obj.lastName);
+                contact.addTag(obj.tag);
+
+                for(var j=0; j < obj.phones.length; j++){
+
+                }
+
+                for(var k=0; j < obj.mails.length; k++){
+
+                }
+
+                _contacts.add(contact);
+            }
         }
     };
 

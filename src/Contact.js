@@ -48,7 +48,7 @@ Contact = (function (self) {
         this.id = function () {
             return id;
         };
-        this.setTag = function (_tag) {
+        this.addTag = function (_tag) {
             tag = _tag;
         };
         this.tag = function () {
